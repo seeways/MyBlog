@@ -1,0 +1,6 @@
+.idea/
+settings.py
+db.sqlite3
+MyBlog/__pycache__/
+myweb/__pycache__/
+myweb/migrations/__pycache__/

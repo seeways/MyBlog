@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block title %}注册{% endblock %}
-{% block css %}<link rel="stylesheet" href="{% static 'css/register.css' %}" />{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}"/>{% endblock %}
 
 
 {% block content %}
@@ -9,29 +10,53 @@
         <div class="col-md-4 col-md-offset-4">
             <form class='form-register' action="/register/" method="post">
                 <h2 class="text-center">欢迎注册</h2>
-                <div class="form-group">
-                    <label for="id_username">用户名：</label>
-                    <input type="text" name='username' class="form-control" id="id_username" placeholder="Username"
-                           autofocus required>
-                </div>
-                <div class="form-group">
-                    <label for="id_password">密码：</label>
-                    <input type="password" name='password' class="form-control" id="id_password" placeholder="Password"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label for="id_nickname">昵称：</label>
-                    <input type="text" name='nickname' class="form-control" id="id_nickname" placeholder="Nickname">
-                </div>
-                <div class="form-group">
-                    <label for="id_email">邮箱：</label>
-                    <input type="email" name='email' class="form-control" id="id_email" placeholder="Email"
-                           required>
-                </div>
-                <div class="form-group">
-                    <label for="id_gender">性别：</label>
+                {% if message %}
+                    <div class="alert alert-warning">{{ message }}</div>
+                {% endif %}
 
-                    <input type="text" name='gender' class="form-control" id="id_gender" required>
+                {% csrf_token %}
+
+                <!-- 用户名 -->
+                <div class="form-group">
+                    {{ register_form.username.label_tag }}
+                    {{ register_form.username }}
+                </div>
+
+                <!-- 昵称 -->
+                <div class="form-group">
+                    {{ register_form.nickname.label_tag }}
+                    {{ register_form.nickname }}
+                </div>
+
+                <!-- 密码 -->
+                <div class="form-group">
+                    {{ register_form.password1.label_tag }}
+                    {{ register_form.password1 }}
+                </div>
+
+                <!-- 确认密码 -->
+                <div class="form-group">
+                    {{ register_form.password2.label_tag }}
+                    {{ register_form.password2 }}
+                </div>
+
+                <!-- email -->
+                <div class="form-group">
+                    {{ register_form.email.label_tag }}
+                    {{ register_form.email }}
+                </div>
+
+                <!-- 性别选项 -->
+                <div class="form-group">
+                    {{ register_form.sex.label_tag }}
+                    {{ register_form.sex }}
+                </div>
+
+                <!-- 验证码 -->
+                <div class="form-group">
+                    {{ register_form.captcha.errors }}
+                    {{ register_form.captcha.label_tag }}
+                    {{ register_form.captcha }}
                 </div>
                 <button type="reset" class="btn btn-default pull-left">重置</button>
                 <button type="submit" class="btn btn-primary pull-right">提交</button>

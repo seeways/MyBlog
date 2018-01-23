@@ -14,16 +14,27 @@
                 {% endif %}
                 {% csrf_token %}
 
+                <!-- 动态生成表单 -->
+                <!-- {{ login_form }} -->
+                <!-- 用户名 -->
                 <div class="form-group">
-                    <label for="id_username">用户名：</label>
-                    <input type="text" name='username' class="form-control" id="id_username" placeholder="Username"
-                           autofocus required>
+                    {{ login_form.username.label_tag }}
+                    {{ login_form.username }}
                 </div>
+
+                <!-- 密码 -->
                 <div class="form-group">
-                    <label for="id_password">密码：</label>
-                    <input type="password" name='password' class="form-control" id="id_password" placeholder="Password"
-                           required>
+                    {{ login_form.password.label_tag }}
+                    {{ login_form.password }}
                 </div>
+
+                <!-- 验证码 -->
+                <div class="form-group">
+                    {{ login_form.captcha.errors }}
+                    {{ login_form.captcha.label_tag }}
+                    {{ login_form.captcha }}
+                </div>
+
                 <button type="reset" class="btn btn-default pull-left">重置</button>
                 <button type="submit" class="btn btn-primary pull-right">提交</button>
             </form>

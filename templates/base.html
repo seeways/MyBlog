@@ -12,7 +12,7 @@
     <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
 
     {% block css %}
-<!-- 动态加载css -->
+        <!-- 动态加载css -->
     {% endblock %}
 </head>
 <body>
@@ -36,15 +36,20 @@
                 <li class="active"><a href="/index/">主页</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/login/">登录</a></li>
-                <li><a href="/register/">注册</a></li>
+                {% if request.session.is_login %}
+                    <li><a href="#">{{ request.session.user_name }}</a></li>
+                    <li><a href="/logout/">退出</a></li>
+                {% else %}
+                    <li><a href="/login/">登录</a></li>
+                    <li><a href="/register/">注册</a></li>
+                {% endif %}
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
 
 {% block content %}
-<!-- 动态加载content -->
+    <!-- 动态加载content -->
 {% endblock %}
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
