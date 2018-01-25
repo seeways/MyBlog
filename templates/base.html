@@ -35,6 +35,10 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/index/">主页</a></li>
             </ul>
+            <ul class="nav navbar-nav nav-tabs">
+                <li><a href="https://github.com/seeways">GitHub</a></li>
+                <li><a href="http://blog.csdn.net/lftaoyuan">CSDN</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if request.session.is_login %}
                     <li><a href="#">{{ request.session.user_name }}</a></li>

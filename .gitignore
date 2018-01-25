@@ -1,6 +1,6 @@
 .idea/
-settings.py
 db.sqlite3
 MyBlog/__pycache__/
 myweb/__pycache__/
 myweb/migrations/__pycache__/
+myweb/migrations/0002_auto_20180123_1807.py

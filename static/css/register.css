@@ -1,7 +1,7 @@
 body {
-    background-color: #eee;
-    /*background: url("../imgs/star_2.jpg");*/
-    /*background-size: cover;*/
+    /*background-color: #eee;*/
+    background: url("../imgs/icon.png");
+    background-size: cover;
 }
 
 .form-register {

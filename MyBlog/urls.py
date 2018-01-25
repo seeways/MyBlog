@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^logout/', views.logout),
     url(r'^captcha', include('captcha.urls')),
     url(r'^confirm/$', views.user_confirm),
+    url(r"^$", views.index),  # 默认主页转发到index
 ]

@@ -1,7 +1,7 @@
 body {
-    /*background: url("../imgs/star_1.jpg");*/
-    /*background-size: cover;*/
-    background: #eee;
+    background: url("../imgs/icon.png");
+    background-size: cover;
+    /*background: #eee;*/
 }
 
 .form-login {
