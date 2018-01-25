@@ -74,8 +74,8 @@ WSGI_APPLICATION = 'MyBlog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myblog',
+        'ENGINE': 'django.db.backends.mysql',  # pip install mysqlclient
+        'NAME': 'myblog',  # 数据库名
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': 'localhost',
@@ -138,7 +138,7 @@ http://help.163.com/09/1223/14/5R7P3QI100753VB8.html
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = 'm18816740231@163.com'
-EMAIL_HOST_PASSWORD = '18816740231a'
+EMAIL_HOST_USER = '邮箱账号'
+EMAIL_HOST_PASSWORD = '邮箱密码'
 # 有效期天数
 CONFIRM_DAYS = 3
