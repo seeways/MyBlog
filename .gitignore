@@ -4,3 +4,7 @@ MyBlog/__pycache__/
 myweb/__pycache__/
 myweb/migrations/__pycache__/
 myweb/migrations/0002_auto_20180123_1807.py
+myweb/migrations/0003_auto_20180126_1811.py
+myweb/migrations/0004_auto_20180126_1823.py
+myweb/migrations/0005_auto_20180126_1837.py
+venv/

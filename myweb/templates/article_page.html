@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}文章{% endblock %}
+
+{% block left-content %}
+
+{% endblock %}
+{% block center-content %}
+    <!-- Center Column -->
+    <div class="col-sm-9">
+        <!-- Article -->
+        <div class="row">
+            <article class="col-xs-12">
+                <h2>{{ article.title }}</h2>
+                <p class="pull-right"><span class="label label-default">{{ article.column }}</span> <span
+                        class="label label-default">{{ article.pub_date | date:"Y/m/j" }}</span> <span
+                        class="label label-default">{{ article.author }}</span></p>
+                <p>
+                <hr>
+                </p>
+                <p>{{ content | safe }}</p>
+                <p></p>
+                <ul class="list-inline">
+
+                    <li><a href=" "><span class="glyphicon glyphicon-comment"></span> {{ article.comment_num }} Comments</a>
+                    </li>
+                    <li><a href="/blog/{{ article.id }}/keep/"><span
+                            class="glyphicon glyphicon-star-empty"></span>{{ article.keep_num }} Favorites</a></li>
+                    <li><a href="/blog/{{ article.id }}/poll/"><span
+                            class="glyphicon glyphicon-thumbs-up"></span>{{ article.poll_num }} Upvotes</a></li>
+                </ul>
+            </article>
+        </div>
+        <hr>
+
+        <!-- Comments -->
+        <h3>Comments:</h3>
+        <hr>
+        {% for comment in comments %}
+            <div class="row">
+
+                <article class="col-xs-12">
+
+                    <p class="pull-right"><span class="label label-default">tag</span> <span
+                            class="label label-default">{{ comment.user }}</span></p>
+
+                    <p>{{ comment.content }}</p>
+                    <!-- 	<p><button class="btn btn-default">Read More</button></p>  -->
+
+                    <ul class="list-inline">
+                        <li><a href=" ">{{ comment.pub_date | date:"Y/m/j" }}</a></li>
+                        <li><a href=" "><span class="glyphicon glyphicon-comment"></span> {{ comment.comment_num }}
+                            Comments</a></li>
+                        <li><a href=" "><span class="glyphicon glyphicon-thumbs-up"></span>{{ comment.poll_num }}
+                            Upvotes</a></li>
+                    </ul>
+                </article>
+            </div>
+            <hr>
+        {% endfor %}
+        <!-- CommentForm   -->
+        <div class="row">
+            <article class="col-xs-12">
+                <h4>Sharing you comment:</h4>
+                <form action="/blog/{{ article.id }}/comment/" method="post">
+                    {% csrf_token %}
+                    {{ commentform.as_p }}
+                    <input class="btn btn-default" type="submit" value="Submit"/>
+                </form>
+            </article>
+        </div>
+        <hr>
+    </div><!--/Center Column-->
+{% endblock %}

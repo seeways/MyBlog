@@ -16,14 +16,18 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from myweb import views
+from myweb import urls as myweb_urls
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^index/', views.index),
-    url(r'^login/', views.login),
-    url(r'^register/', views.register),
-    url(r'^logout/', views.logout),
-    url(r'^captcha', include('captcha.urls')),
-    url(r'^confirm/$', views.user_confirm),
-    url(r"^$", views.index),  # 默认主页转发到index
+    # url(r'^index/', views.index),
+    # url(r'^login/', views.login),
+    # url(r'^register/', views.register),
+    # url(r'^logout/', views.logout),
+    # url(r'^captcha', include('captcha.urls')),
+    # url(r'^confirm/$', views.user_confirm),
+
+    url(r'^blog/', include(myweb_urls)),
+    url(r'^$', views.index, name='index'),  # 默认主页转发到index
+    url(r'^admin/', include(admin.site.urls)),
 ]
+

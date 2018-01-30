@@ -123,22 +123,27 @@ STATICFILES_DIRS = [  # 设置根目录静态文件夹
     os.path.join(BASE_DIR, "static"),
 ]
 
-"""
-send email
+# """
+# send email
+#
+# EMAIL_BACKEND         指定发送邮件的后端模块
+# EMAIL_HOST            发送方的smtp服务器地址
+# EMAIL_PORT            smtp服务端口，ssl:465/994, 非sll:25
+# EMAIL_HOST_USER       用户名
+# EMAIL_HOST_PASSWORD   密码
+#
+# 163邮箱说明
+# http://help.163.com/09/1223/14/5R7P3QI100753VB8.html
+# """
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.163.com'
+# EMAIL_PORT = 25
+# EMAIL_HOST_USER = 'm18816740231@163.com'
+# EMAIL_HOST_PASSWORD = '18816740231a'
+# # 有效期天数
+# CONFIRM_DAYS = 3
 
-EMAIL_BACKEND         指定发送邮件的后端模块
-EMAIL_HOST            发送方的smtp服务器地址
-EMAIL_PORT            smtp服务端口，ssl:465/994, 非sll:25
-EMAIL_HOST_USER       用户名
-EMAIL_HOST_PASSWORD   密码
-
-163邮箱说明
-http://help.163.com/09/1223/14/5R7P3QI100753VB8.html
-"""
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.163.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'm18816740231@163.com'
-EMAIL_HOST_PASSWORD = '18816740231a'
-# 有效期天数
-CONFIRM_DAYS = 3
+# 注册User
+AUTH_USER_MODEL = "myweb.NewUser"
+# 强制登录页
+LOGIN_URL = "/blog/login/?next='article_id'"

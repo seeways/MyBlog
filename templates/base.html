@@ -1,64 +1,422 @@
-{% load staticfiles %}  <!-- 加载静态文件 -->
 <!DOCTYPE html>
-<html lang="zh-CN">
+<!-- Template by Quackit.com -->
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>{% block title %}{% endblock %}</title> <!-- 动态加载title -->
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!-- Bootstrap -->
-    <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
-
+    {% load staticfiles %}
+    {# 安全验证 #}
+    <script src="{% static "csrf.js" %}"></script>
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own -->
+    <link href="{% static "css/custom.css" %}" rel="stylesheet">
+    <!-- title -->
+    <title>{% block title %}{% endblock %}</title>
     {% block css %}
-        <!-- 动态加载css -->
+        <!-- 动态加载css-->
+        {# {% block css %}<link rel="stylesheet" href="{% static 'css/register.css' %}"/>{% endblock %}#}
     {% endblock %}
 </head>
+
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container">
+        <!-- Logo and responsive toggle -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-nav"
-                    aria-expanded="false">
-                <span class="sr-only">切换导航条</span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">世外的python之旅</a>
+            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-globe"></span>世外的博客</a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="my-nav">
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/index/">主页</a></li>
+                <li class="active">
+                    <a href="http://127.0.0.1:8000">Home</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Products</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Services <span class="caret"></span></a>
+                    <ul class="dropdown-menu" aria-labelledby="about-us">
+                        <li><a href="#">Engage</a></li>
+                        <li><a href="#">Pontificate</a></li>
+                        <li><a href="#">Synergize</a></li>
+                    </ul>
+                </li>
             </ul>
-            <ul class="nav navbar-nav nav-tabs">
-                <li><a href="https://github.com/seeways">GitHub</a></li>
-                <li><a href="http://blog.csdn.net/lftaoyuan">CSDN</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {% if request.session.is_login %}
-                    <li><a href="#">{{ request.session.user_name }}</a></li>
-                    <li><a href="/logout/">退出</a></li>
-                {% else %}
-                    <li><a href="/login/">登录</a></li>
-                    <li><a href="/register/">注册</a></li>
-                {% endif %}
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+
+            <!-- Search -->
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Search
+                </button>
+            </form>
+
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
 </nav>
 
-{% block content %}
-    <!-- 动态加载content -->
-{% endblock %}
+<!-- content -->
+<!-- 注意! col-sm-3总共12,继承使用时注意 -->
+<div class="container-fluid">
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="{% static 'js/jquery-3.3.1.js' %}"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <!-- Left Column -->
+    {% block left-content %}
+        <div class="col-sm-3">
+
+            <!-- List-Group Panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><span class="glyphicon glyphicon-random"></span> Completely Synergize</h1>
+                </div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">Resource Taxing</a>
+                    <a href="#" class="list-group-item">Premier Niche Markets</a>
+                    <a href="#" class="list-group-item">Dynamically Innovate</a>
+                    <a href="#" class="list-group-item">Objectively Innovate</a>
+                    <a href="#" class="list-group-item">Proactively Envisioned</a>
+                </div>
+            </div>
+
+            <!-- Text Panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title"><span class="glyphicon glyphicon-cog"></span> Dramatically Engage</h1>
+                </div>
+
+                <div class="panel-body">
+                    <p>Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly
+                        predominate extensible testing procedures for reliable supply chains. Dramatically engage
+                        top-line
+                        web services vis-a-vis cutting-edge deliverables.</p>
+                    <p>
+                        <button class="btn btn-default">Engage</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Text Panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-bullhorn"></span>
+                        Active Predomination
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p>Proactively envisioned multimedia based expertise and cross-media growth strategies.</p>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default">Resource</button>
+                        <button type="button" class="btn btn-default">Envision</button>
+                        <button type="button" class="btn btn-default">Niche</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endblock %}
+
+    <!-- Center Column -->
+    {% block center-content %}
+        <div class="col-sm-6">
+            <!-- Articles -->
+            {% for article in latest_article_list %}
+                <div class="row">
+                    <article class="col-xs-12">
+                        <h2><a id="article_title" href="/blog/{{ article.id }}">{{ article.title }}</a></h2>
+                        {# 过滤器：内容显示前80个字符，safe让内容不显示html标签 #}
+                        <p>{{ article.content|truncatechars_html:80 | safe }}</p>
+                        <p>
+                            {#                        <button class="btn btn-default">Read More</button>#}
+                        </p>
+                        <p class="pull-right"><span class="label label-default">{{ article.column }}</span> <span
+                                class="label label-default">tag</span> <span
+                                class="label label-default">{{ article.author }}</span></p>
+                        <ul class="list-inline">
+                            {# 发布日期：date是显示格式 #}
+                            <li><a href="#">{{ article.pub_date | date:"Y/m/j" }}</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-comment"></span> {{ article.comment_num }}
+                                Comments</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-star-empty"></span>{{ article.keep_num }}
+                                Favorites</a></li>
+                        </ul>
+                    </article>
+                </div>
+                <hr>
+            {% endfor %}
+{#            <div class="row">#}
+{#                <article class="col-xs-12">#}
+{#                    <h2>Premier Niche Markets</h2>#}
+{#                    <p>Phosfluorescently engage worldwide methodologies with web-enabled technology. Interactively#}
+{#                        coordinate proactive e-commerce via process-centric "outside the box" thinking. Completely#}
+{#                        pursue#}
+{#                        scalable customer service through sustainable potentialities.</p>#}
+{#                    <p>#}
+{#                        <button class="btn btn-default">Read More</button>#}
+{#                    </p>#}
+{#                    <p class="pull-right"><span class="label label-default">keyword</span> <span#}
+{#                            class="label label-default">tag</span> <span class="label label-default">post</span></p>#}
+{#                    <ul class="list-inline">#}
+{#                        <li><a href="#">Today</a></li>#}
+{#                        <li><a href="#"><span class="glyphicon glyphicon-comment"></span> 2 Comments</a></li>#}
+{#                        <li><a href="#"><span class="glyphicon glyphicon-star-empty"></span> 8 favorites</a></li>#}
+{#                    </ul>#}
+{#                </article>#}
+{#            </div>#}
+            <hr>
+        </div>
+    {% endblock %}
+
+    <!-- Right Column -->
+    {% block right-content %}
+        <div class="col-sm-3">
+            <!-- django内置的认证系统中的方法 -->
+            {% if request.user.is_authenticated %}
+                <!-- Form -->
+                <!-- Logout -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <!-- logo -->
+                            <span class="glyphicon glyphicon-user"></span>
+                            {{ user }}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">Hi! {{ user }}
+                            <a href="/blog/logout/">
+                                <input class="btn btn-default" type="submit" value="退出"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <!-- Login -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            欢迎登录
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="/blog/login/" method="post">
+                            {# 伪造跨站请求防护，也属于过滤器 #}
+                            {% csrf_token %}
+                            {# 表单模块(forms.py)自带的错误提示信息 #}
+                            {{ loginform.non_field_errors }}
+                            <div class="form-group">
+                                {{ loginform.uid }}
+                                <!--	<input type="text" class="form-control" id="uid" name="uid" placeholder="Username">  -->
+                            </div>
+                            <div class="form-group">
+                                {{ loginform.pwd }}
+                                <!--	<input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password">  -->
+                            </div>
+                            <button type="submit" class="btn btn-default">登录</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Progress Bars -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-scale"></span>
+                        Language
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {# Android #}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80"
+                             aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                            Android
+                        </div>
+                    </div>
+                    {# Django #}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100"
+                             aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                            Django
+                        </div>
+                    </div>
+                    {# Java #}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45"
+                             aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                            Java
+                        </div>
+                    </div>
+                    {# Python #}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45"
+                             aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                            Python
+                        </div>
+                    </div>
+                    {# Other  info :progress-bar-info is other color #}
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="35"
+                             aria-valuemin="0" aria-valuemax="100" style="width:30%">
+                            Other
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel -->
+            <h3><span class="glyphicon glyphicon-modal-window"></span> Synergization</h3>
+            <div id="side-carousel" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#side-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#side-carousel" data-slide-to="1"></li>
+                    <li data-target="#side-carousel" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <a href="#">
+                            <img class="img-responsive" src="holder.js/400x300?bg=FF8C00&text=Image%201" alt="">
+                        </a>
+                        <div class="carousel-caption">
+                            <h3>Dramatically Engage</h3>
+                            <p>Objectively innovate empowered manufactured products whereas parallel platforms.</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="img-responsive" src="holder.js/400x300?bg=FF8C00&text=Image%202" alt="">
+                        </a>
+                        <div class="carousel-caption">
+                            <h3>Efficiently Unleash</h3>
+                            <p>Dramatically maintain clicks-and-mortar solutions without functional solutions.</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <a href="#">
+                            <img class="img-responsive" src="holder.js/400x300?bg=FF8C00&text=Image%203" alt="">
+                        </a>
+                        <div class="carousel-caption">
+                            <h3>Proactively Pontificate</h3>
+                            <p>Holistically pontificate installed base portals after maintainable products.</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#side-carousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#side-carousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+        </div>
+    {% endblock %}
+</div><!--/container-fluid-->
+
+<footer>
+    <div class="footer-blurb">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3 footer-blurb-item">
+                    <h3><span class="glyphicon glyphicon-text-size"></span> Dynamic</h3>
+                    <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically
+                        procrastinate B2C users after installed base benefits. Dramatically visualize customer
+                        directed
+                        convergence without revolutionary ROI.</p>
+                    <p><a class="btn btn-default" href="#">Procrastinate</a></p>
+                </div>
+                <div class="col-sm-3 footer-blurb-item">
+                    <h3><span class="glyphicon glyphicon-wrench"></span> Efficient</h3>
+                    <p>Dramatically maintain clicks-and-mortar solutions without functional solutions. Efficiently
+                        unleash cross-media information without cross-media value. Quickly maximize timely
+                        deliverables
+                        for real-time schemas. </p>
+                    <p><a class="btn btn-default" href="#">Unleash</a></p>
+                </div>
+                <div class="col-sm-3 footer-blurb-item">
+                    <h3><span class="glyphicon glyphicon-paperclip"></span> Complete</h3>
+                    <p>Professionally cultivate one-to-one customer service with robust ideas. Completely synergize
+                        resource taxing relationships via premier niche markets. Dynamically innovate
+                        resource-leveling
+                        customer service for state of the art customer service.</p>
+                    <p><a class="btn btn-default" href="#">Complete</a></p>
+                </div>
+                <div class="col-sm-3 footer-blurb-item">
+
+                    <!-- Thumbnails -->
+                    <h3><span class="glyphicon glyphicon-camera"></span> Phosfluorescent</h3>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="#" class="thumbnail">
+                                <img src="holder.js/110x80" alt="">
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#" class="thumbnail">
+                                <img src="holder.js/110x80" alt="">
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#" class="thumbnail">
+                                <img src="holder.js/110x80" alt="">
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="#" class="thumbnail">
+                                <img src="holder.js/110x80" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+
+    <div class="small-print">
+        <div class="container">
+            <p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+            <p>Copyright &copy; Example.com 2015 </p>
+        </div>
+    </div>
+</footer>
+
+
+<!-- jQuery -->
+<script src="{% static "js/jquery-1.11.3.min.js" %}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<!-- IE10 viewport bug workaround -->
+<script src="{% static "js/ie10-viewport-bug-workaround.js" %}"></script>
+<!-- Placeholder Images -->
+<script src="{% static "js/holder.min.js" %}"></script>
+<!-- other extends -->
+<script src="{% static "js/holder.min.js" %}"></script>
 </body>
+
 </html>

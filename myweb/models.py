@@ -1,56 +1,64 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
-class User(models.Model):  # 避免和继承的User重名
-    gender = (
-        ("male", "男"),
-        ("female", "女"),
-    )
-
-    username = models.CharField(max_length=128, unique=True)  # 用户名
-    password = models.CharField(max_length=128)  # 密码
-    email = models.EmailField(unique=True)  # Email
-    sex = models.CharField(max_length=32, choices=gender, default="男")  # 性别
-    nickname = models.CharField(max_length=128)  # 昵称
-    create_time = models.DateTimeField(auto_now_add=True)  # 创建时间
-    has_confirmed = models.BooleanField(default=False)  # 是否验证
-
+class NewUser(AbstractUser):  # 避免和继承的User重名
     profile = models.CharField('profile', default='', max_length=256)
 
-    @property
     def __str__(self):
-        if self.nickname is not None:
-            return self.nickname
-        else:
-            return self.username
-
-    class Meta:
-        ordering = ["-create_time"]
-        verbose_name = "用户"
-        verbose_name_plural = "用户"
+        return self.username
 
 
 # 和User表形成一对一的关系，对User和注册码进行验证,然后去admin注册
 # 完成之后，要进行迁移操作 1. python manage.py makemigrations 2. python manage.py migrate
-class ConfirmString(models.Model):
-    code = models.CharField(max_length=256)  # hash后的注册码
-    user = models.OneToOneField("User")  # 一对一关联
-    create_time = models.DateTimeField(auto_now_add=True)  # 创建时间
-
-    def __str__(self):
-        return self.user.username + ":  " + self.code
-
-    class Meta:
-        ordering = ["-create_time"]
-        verbose_name = "确认码"
-        verbose_name_plural = "确认码"
+# class ConfirmString(models.Model):
+#     code = models.CharField(max_length=256)  # hash后的注册码
+#     user = models.OneToOneField("NewUser")  # 一对一关联
+#     create_time = models.DateTimeField(auto_now_add=True)  # 创建时间
+#
+#     def __str__(self):
+#         return self.user.username + ":  " + self.code
+#
+#     class Meta:
+#         ordering = ["-create_time"]
+#         verbose_name = "确认码"
+#         verbose_name_plural = "确认码"
 
 
 """
 cms系统
 """
+
+
+# 文章查询
+class ArticleManager(models.Manager):
+    # 分类查询
+    def query_by_column(self, column_id):
+        query = self.get_queryset().filter(column_id=column_id)
+
+    # 按用户
+    def query_by_user(self, user_id):
+        user = User.objects.get(id=user_id)
+        article_list = user.article_set.all()
+        return article_list
+
+    # 按点赞
+    def query_by_polls(self):
+        query = self.get_queryset().order_by('poll_num')
+        return query
+
+    # 按时间
+    def query_by_time(self):
+        query = self.get_queryset().order_by('-pub_date')
+        return query
+
+    # 按关键词
+    # 按关键词
+    def query_by_keyword(self, keyword):
+        query = self
 
 
 # 文章分类
@@ -71,7 +79,7 @@ class Column(models.Model):
 class Article(models.Model):
     column = models.ForeignKey(Column, blank=True, null=True, verbose_name="belong to ")  # 外键 分类
     author = models.ForeignKey('Author')  # 外键 作者
-    user = models.ManyToManyField("User", blank=True)  # 多对多 用户
+    user = models.ManyToManyField("NewUser", blank=True)  # 多对多 用户
 
     title = models.CharField(max_length=256)  # 标题
     content = models.TextField('content')  # 内容
@@ -89,10 +97,12 @@ class Article(models.Model):
         verbose_name = 'article'
         verbose_name_plural = 'article'
 
+    objects = ArticleManager()  # 申明文章管理类
+
 
 # 评论
 class Comment(models.Model):
-    user = models.ForeignKey("User", null=True)
+    user = models.ForeignKey("NewUser", null=True)
     article = models.ForeignKey(Article, null=True)
     content = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True, editable=True)
@@ -115,6 +125,6 @@ class Author(models.Model):
 
 # 点赞
 class Poll(models.Model):
-    user = models.ForeignKey('User', null=True)
+    user = models.ForeignKey('NewUser', null=True)
     article = models.ForeignKey(Article, null=True)
     comment = models.ForeignKey(Comment, null=True)
