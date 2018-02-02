@@ -83,6 +83,8 @@ redirect()函数是django内置的一个快捷函数，用来重定向。
 因为文章与用户是多对多关系，所以logged_user.article_set.all()会得到这个登录用户对应
 的所有文章(即它收藏的文章)
 """
+
+
 # 收藏
 @login_required
 def get_keep(request, article_id):

@@ -76,10 +76,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # pip install mysqlclient
         'NAME': 'myblog',  # 数据库名
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'USER': 'root',  # 用户名
+        'PASSWORD': '123456',  # 密码
+        'HOST': 'localhost',  # host
+        'PORT': '3306',  # port
     }
 }
 
@@ -138,8 +138,8 @@ STATICFILES_DIRS = [  # 设置根目录静态文件夹
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.163.com'
 # EMAIL_PORT = 25
-# EMAIL_HOST_USER = 'm18816740231@163.com'
-# EMAIL_HOST_PASSWORD = '18816740231a'
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ''
 # # 有效期天数
 # CONFIRM_DAYS = 3
 

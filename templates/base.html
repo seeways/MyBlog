@@ -20,42 +20,46 @@
         <!-- 动态加载css-->
         {# {% block css %}<link rel="stylesheet" href="{% static 'css/register.css' %}"/>{% endblock %}#}
     {% endblock %}
+    {% block script %}
+    {% endblock %}
 </head>
 
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-    <div class="container">
+<nav class="navbar navbar-inverse navbar-static-top navbar-default" role="navigation">
+    <div class="container-fluid">
         <!-- Logo and responsive toggle -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-globe"></span>世外的博客</a>
+            <!-- label span is a globe icon -->
+            <a class="navbar-brand active" href="http://127.0.0.1:8000">
+                <span class="glyphicon glyphicon-globe"></span>
+                世外的博客
+            </a>
+
         </div>
         <!-- Navbar links -->
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
-                <li class="active">
-                    <a href="http://127.0.0.1:8000">Home</a>
+                <li>
+                    <a href="http://127.0.0.1:8000">
+                        <span class="glyphicon glyphicon-home"></span>
+                        网站首页
+                    </a>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="#">博客</a>
                 </li>
                 <li>
-                    <a href="#">Products</a>
+                    <a href="#">分享</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                       aria-expanded="false">Services <span class="caret"></span></a>
+                       aria-expanded="false">关于<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="about-us">
-                        <li><a href="#">Engage</a></li>
-                        <li><a href="#">Pontificate</a></li>
-                        <li><a href="#">Synergize</a></li>
+                        <li><a href="#">简介</a></li>
+                        <li><a href="https://github.com/seeways">GitHub</a></li>
+                        <li><a href="http://blog.csdn.net/lftaoyuan">CSDN</a></li>
                     </ul>
                 </li>
             </ul>
@@ -163,25 +167,6 @@
                 </div>
                 <hr>
             {% endfor %}
-{#            <div class="row">#}
-{#                <article class="col-xs-12">#}
-{#                    <h2>Premier Niche Markets</h2>#}
-{#                    <p>Phosfluorescently engage worldwide methodologies with web-enabled technology. Interactively#}
-{#                        coordinate proactive e-commerce via process-centric "outside the box" thinking. Completely#}
-{#                        pursue#}
-{#                        scalable customer service through sustainable potentialities.</p>#}
-{#                    <p>#}
-{#                        <button class="btn btn-default">Read More</button>#}
-{#                    </p>#}
-{#                    <p class="pull-right"><span class="label label-default">keyword</span> <span#}
-{#                            class="label label-default">tag</span> <span class="label label-default">post</span></p>#}
-{#                    <ul class="list-inline">#}
-{#                        <li><a href="#">Today</a></li>#}
-{#                        <li><a href="#"><span class="glyphicon glyphicon-comment"></span> 2 Comments</a></li>#}
-{#                        <li><a href="#"><span class="glyphicon glyphicon-star-empty"></span> 8 favorites</a></li>#}
-{#                    </ul>#}
-{#                </article>#}
-{#            </div>#}
             <hr>
         </div>
     {% endblock %}
@@ -234,6 +219,7 @@
                             </div>
                             <button type="submit" class="btn btn-default">登录</button>
                         </form>
+
                     </div>
                 </div>
             {% endif %}
