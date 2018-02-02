@@ -30,10 +30,4 @@
 
 ### 关于settings
 
-前台用户账号(世外)： seeways seeways
-
-后台管理员账号(桃源)：taoyuan  TaoYuan123
-
-
-
-settings文件包含了很多敏感信息，可以参照说明进行修改
+`settings.py` 是任何一个Django项目最重要和敏感的模块，几乎包含了所有的重要配置信息，务必了解其用法
